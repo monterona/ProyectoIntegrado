@@ -21,6 +21,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="alumno_ot")
 public class Alumno_ot implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2739022514317767653L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

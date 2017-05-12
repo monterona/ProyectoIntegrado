@@ -17,8 +17,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="redes")
 public class Redes implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3994355358643711338L;
+
 	public Redes() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Redes(Integer id, String link, Alumno alumno) {
 		super();

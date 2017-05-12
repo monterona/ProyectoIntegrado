@@ -1,13 +1,8 @@
 package com.proyectoIntegrado.webRest;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +33,7 @@ public class LoginController extends AbstractResourceController {
 	@RequestMapping(value = "/login")
 	public Usuario login(@RequestParam("usuario")String usuario,@RequestParam("contrasena")String contrasena){
 		Usuario u = usuarioService.login(usuario, contrasena);
+		log.info(u.toString());
 		return u;
 	}
 	@RequestMapping(value = "/alumno")

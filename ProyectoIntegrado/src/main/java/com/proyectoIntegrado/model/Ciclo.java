@@ -17,6 +17,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="ciclo")
 public class Ciclo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3879185873573441230L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -19,6 +19,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "ot")
 public class Ot implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7555899864893264362L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

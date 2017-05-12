@@ -17,6 +17,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="centro")
 public class Centro implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3621397350623970207L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

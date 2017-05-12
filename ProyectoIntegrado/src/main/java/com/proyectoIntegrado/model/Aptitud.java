@@ -17,6 +17,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "aptitud")
 public class Aptitud implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9204597049943057573L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
