@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectoIntegrado.model.Alumno;
+import com.proyectoIntegrado.model.Alumno_ciclo;
 import com.proyectoIntegrado.model.Usuario;
 import com.proyectoIntegrado.repository.AlumnoRepository;
+import com.proyectoIntegrado.repository.Alumno_cicloRepository;
 import com.proyectoIntegrado.service.UsuariosService;
 
 @RestController
@@ -18,11 +20,13 @@ public class LoginController extends AbstractResourceController {
 	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 	private final UsuariosService usuarioService;
 	private final AlumnoRepository alumnoRepository;
+	private final Alumno_cicloRepository alumno_cicloRepository;
 
 	@Autowired
-	public LoginController(UsuariosService usuariosService,AlumnoRepository alumnoRepository) {
+	public LoginController(UsuariosService usuariosService,AlumnoRepository alumnoRepository, Alumno_cicloRepository alumno_cicloRepository) {
 		this.usuarioService=usuariosService;
 		this.alumnoRepository=alumnoRepository;
+		this.alumno_cicloRepository=alumno_cicloRepository;
 	}
 
 //	@InitBinder
@@ -33,12 +37,17 @@ public class LoginController extends AbstractResourceController {
 	@RequestMapping(value = "/login")
 	public Usuario login(@RequestParam("usuario")String usuario,@RequestParam("contrasena")String contrasena){
 		Usuario u = usuarioService.login(usuario, contrasena);
-		log.info(u.toString());
+		//log.info(u.toString());
 		return u;
 	}
 	@RequestMapping(value = "/alumno")
 	public Alumno alumno(){
 		Alumno a=alumnoRepository.findOne(1);
+		return a;
+	}
+	@RequestMapping(value = "/alumnos")
+	public Alumno_ciclo alumnos(){
+		Alumno_ciclo a=alumno_cicloRepository.findOne(1);
 		return a;
 	}
 //	@RequestMapping(value = "/alumno")

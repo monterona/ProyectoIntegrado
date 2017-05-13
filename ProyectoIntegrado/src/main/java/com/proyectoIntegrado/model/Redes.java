@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="redes")
 public class Redes implements Serializable{
@@ -22,19 +24,10 @@ public class Redes implements Serializable{
 	 */
 	private static final long serialVersionUID = -3994355358643711338L;
 
-	public Redes() {
-		
-	}
-	public Redes(Integer id, String link, Alumno alumno) {
-		super();
-		this.id = id;
-		this.link = link;
-//		this.alumno = alumno;
-	}
-
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@JsonIgnore
+	private Integer id;
 	
 	@Column(name = "link")
     @NotEmpty
@@ -42,6 +35,7 @@ public class Redes implements Serializable{
 	
     @ManyToOne
     @JoinColumn(name = "alumno_id")
+    @JsonIgnore
 	private Alumno alumno;
 
 	public Integer getid() {

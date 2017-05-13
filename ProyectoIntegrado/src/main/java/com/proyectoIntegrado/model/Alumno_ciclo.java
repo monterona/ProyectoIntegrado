@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="alumno_ciclo")
 public class Alumno_ciclo {
@@ -26,6 +28,7 @@ public class Alumno_ciclo {
 	
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "alumno_id")
+    @JsonIgnore
 	private Alumno alumno;
 	
     @ManyToOne(cascade = CascadeType.ALL)

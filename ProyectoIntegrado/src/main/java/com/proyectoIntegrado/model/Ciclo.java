@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="ciclo")
 public class Ciclo implements Serializable{
@@ -35,6 +37,7 @@ public class Ciclo implements Serializable{
     private String siglas;
     
     @OneToMany(mappedBy = "ciclo")
+    @JsonIgnore
     private List<Alumno_ciclo> alumno_ciclos;
 
 	public String getNombre() {

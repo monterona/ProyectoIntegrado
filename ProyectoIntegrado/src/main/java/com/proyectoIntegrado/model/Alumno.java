@@ -214,6 +214,18 @@ public class Alumno implements Serializable {
 		return usuario;
 	}
 
+	public List<Redes> getRedes() {
+		return redes;
+	}
+
+	public void setRedes(List<Redes> redes) {
+		this.redes = redes;
+	}
+
+	public int getDisponibilidad() {
+		return disponibilidad;
+	}
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}

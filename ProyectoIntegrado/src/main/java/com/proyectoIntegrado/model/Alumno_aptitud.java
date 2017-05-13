@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="alumno_aptitud")
 public class Alumno_aptitud implements Serializable{
@@ -30,6 +32,7 @@ public class Alumno_aptitud implements Serializable{
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "alumno_id")
+    @JsonIgnore
 	private Alumno alumno;
     
 	@ManyToOne(cascade = CascadeType.ALL)
