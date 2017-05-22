@@ -3,6 +3,7 @@ package com.proyectoIntegrado.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +15,11 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "aptitud")
-public class Aptitud implements Serializable{
+public class Aptitud implements Serializable {
 
 	/**
 	 * 
@@ -32,9 +34,9 @@ public class Aptitud implements Serializable{
 	@NotEmpty
 	private String nombre;
 
-	@OneToMany(mappedBy = "aptitud")
+	@OneToMany(mappedBy = "aptitud", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private List<Alumno_aptitud> alumno_aptitud;
+	private List<Alumno_aptitud> alumno_aptitudes;
 
 	public Integer getId() {
 		return id;
@@ -52,12 +54,20 @@ public class Aptitud implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public List<Alumno_aptitud> getAlumno_aptitud() {
-		return alumno_aptitud;
+	public List<Alumno_aptitud> getAlumno_aptitudes() {
+		return alumno_aptitudes;
 	}
 
-	public void setAlumno_aptitud(List<Alumno_aptitud> alumno_aptitud) {
-		this.alumno_aptitud = alumno_aptitud;
+	public void setAlumno_aptitudes(List<Alumno_aptitud> alumno_aptitudes) {
+		this.alumno_aptitudes = alumno_aptitudes;
+
+	}
+
+	public void addAlumno_aptitudes(Alumno_aptitud alumno_aptitud) {
+		this.alumno_aptitudes.add(alumno_aptitud);
+		if (alumno_aptitud.getAptitud() != this) {
+			alumno_aptitud.setAptitud(this);
+		}
 	}
 
 }

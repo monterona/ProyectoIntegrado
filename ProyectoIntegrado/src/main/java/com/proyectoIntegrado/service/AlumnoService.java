@@ -6,6 +6,6 @@ import com.proyectoIntegrado.model.Alumno;
 
 public interface AlumnoService {
 	Alumno save(Alumno a);
-	Alumno getAlumno(Integer i);
+	Alumno getAlumno(int i);
 	List<Alumno> getAlumnos();
 }

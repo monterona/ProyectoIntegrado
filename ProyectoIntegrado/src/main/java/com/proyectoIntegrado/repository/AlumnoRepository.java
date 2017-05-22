@@ -7,5 +7,5 @@ import com.proyectoIntegrado.model.Alumno;
 
 @Repository
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer>{
-
+	
 }

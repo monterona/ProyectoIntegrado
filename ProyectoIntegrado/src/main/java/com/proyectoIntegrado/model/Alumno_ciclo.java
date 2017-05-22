@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -36,8 +38,9 @@ public class Alumno_ciclo {
 	private Ciclo ciclo;
 	
 	@Column(name = "annio_fin")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy/MM/dd")
+	//@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date annio_fin;
 
 	public Integer getId() {

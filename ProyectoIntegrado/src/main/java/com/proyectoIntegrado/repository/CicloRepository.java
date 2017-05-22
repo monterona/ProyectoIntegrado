@@ -6,4 +6,5 @@ import com.proyectoIntegrado.model.Ciclo;
 
 public interface CicloRepository extends JpaRepository<Ciclo, Integer>{
 
+	Ciclo findFirstBySiglas(String siglas);
 }

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -53,6 +54,9 @@ public class Alumno_aptitud implements Serializable{
 
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
+		if (!alumno.getAlumno_aptitudes().contains(this)) {
+			alumno.getAlumno_aptitudes().add(this);
+		}
 	}
 
 	public String getNivel() {
@@ -69,6 +73,9 @@ public class Alumno_aptitud implements Serializable{
 
 	public void setAptitud(Aptitud aptitud) {
 		this.aptitud = aptitud;
+		if (!aptitud.getAlumno_aptitudes().contains(this)) {
+			aptitud.getAlumno_aptitudes().add(this);
+		}
 	}
 	
 }

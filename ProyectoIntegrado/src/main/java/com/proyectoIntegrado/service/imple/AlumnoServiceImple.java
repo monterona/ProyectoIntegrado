@@ -25,7 +25,7 @@ public class AlumnoServiceImple implements AlumnoService {
 	}
 
 	@Override
-	public Alumno getAlumno(Integer i) {
+	public Alumno getAlumno(int i) {
 		return alumnoRepository.findOne(i);
 	}
 

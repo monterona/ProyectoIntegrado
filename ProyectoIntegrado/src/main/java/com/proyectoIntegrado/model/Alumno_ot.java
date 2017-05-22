@@ -17,6 +17,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="alumno_ot")
 public class Alumno_ot implements Serializable{
@@ -41,6 +43,7 @@ public class Alumno_ot implements Serializable{
 	@Column(name = "annio_fin")
 	@Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy/MM/dd")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date annio_fin;
 
 	public Integer getId() {
