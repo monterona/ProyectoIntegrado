@@ -38,7 +38,7 @@ public class Ciclo implements Serializable {
 	@NotEmpty
 	private String siglas;
 
-	@OneToMany(mappedBy = "ciclo", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "ciclo")
 	@JsonIgnore
 	private List<Alumno_ciclo> alumno_ciclos;
 

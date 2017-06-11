@@ -35,6 +35,10 @@ public class Usuario implements Serializable{
     @Column(name = "rol_profesor")
     private int rol_profesor;
 
+    public Usuario() {
+		// TODO Auto-generated constructor stub
+	}
+    
 	public Integer getId() {
 		return id;
 	}

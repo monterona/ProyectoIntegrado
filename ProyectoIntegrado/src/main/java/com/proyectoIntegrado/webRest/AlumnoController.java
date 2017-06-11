@@ -12,23 +12,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectoIntegrado.model.Alumno;
 import com.proyectoIntegrado.model.Ciclo;
-import com.proyectoIntegrado.repository.Alumno_cicloRepository;
 import com.proyectoIntegrado.service.AlumnoService;
+import com.proyectoIntegrado.service.Alumno_cicloService;
 import com.proyectoIntegrado.service.CicloService;
+import com.proyectoIntegrado.service.RedesService;
 
 @RestController
 public class AlumnoController extends AbstractResourceController {
 
 	private final AlumnoService alumnoService;
 	private final CicloService cicloService;
-	private final Alumno_cicloRepository alumno_cicloRepository;
+	private final Alumno_cicloService alumno_cicloService;
+	private final RedesService redesService;
 
 	@Autowired
 	public AlumnoController(AlumnoService alumnoService, CicloService cicloService,
-			Alumno_cicloRepository alumno_cicloRepository) {
+			Alumno_cicloService alumno_cicloService,RedesService redesService) {
 		this.alumnoService = alumnoService;
 		this.cicloService = cicloService;
-		this.alumno_cicloRepository = alumno_cicloRepository;
+		this.alumno_cicloService = alumno_cicloService;
+		this.redesService = redesService;
 	}
 
 	@RequestMapping(value = "/alumnos", method = RequestMethod.GET)
@@ -41,15 +44,28 @@ public class AlumnoController extends AbstractResourceController {
 		return alumnoService.getAlumno(id);
 	}
 
-	@RequestMapping(value = "/alumno/{siglas}", method = RequestMethod.POST)
-	public void alumno(@RequestBody Alumno alumno, @PathVariable("siglas") String siglas) {
+//	@RequestMapping(value = "/alumno/{siglas}", method = RequestMethod.POST)
+//	public void alumno(@RequestBody Alumno alumno, @PathVariable("siglas") String siglas) {
+//		Alumno a = alumnoService.save(alumno);
+//		Ciclo c = cicloService.getCiclo(siglas);
+//		alumno_cicloService.save(alumno.getalumno_ciclo().get(0).getAnnio_fin(),a.getId(), c.getId());
+//	}
+	
+	@RequestMapping(value = "/alumno", method = RequestMethod.POST)
+	public void alumno(@RequestBody Alumno alumno) {
 		Alumno a = alumnoService.save(alumno);
-		Ciclo c = cicloService.getCiclo(siglas);
-		alumno_cicloRepository.insert("2017-08-05",a.getId(), c.getId());
+		int alumno_id = a.getId();
+		redesService.save(alumno_id, alumno.getRedes());
+		alumno_cicloService.save(alumno_id, alumno.getalumno_ciclo());
 	}
 
 	@RequestMapping(value = "ciclo")
 	public Ciclo ciclo(@RequestParam("siglas") String siglas) {
 		return cicloService.getCiclo(siglas);
+	}
+	
+	@RequestMapping(value = "ciclos")
+	public List<Ciclo> getCiclos() {
+		return cicloService.getCiclos();
 	}
 }

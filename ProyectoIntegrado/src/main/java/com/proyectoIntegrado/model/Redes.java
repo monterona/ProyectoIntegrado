@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -51,6 +50,9 @@ public class Redes implements Serializable{
 	}
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
+		if (!alumno.getRedes().contains(this)) {
+			alumno.getRedes().add(this);
+		}
 	}
 
 	public Integer getId() {

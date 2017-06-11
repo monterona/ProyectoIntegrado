@@ -20,8 +20,6 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "alumno")
@@ -87,6 +85,10 @@ public class Alumno implements Serializable {
 	@Column(name = "observaciones")
 	private String observaciones;
 
+	public Alumno() {
+		
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -204,16 +206,16 @@ public class Alumno implements Serializable {
 	
 	private Usuario usuario;
 
-	@OneToMany(mappedBy = "alumno",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "alumno")
 	private List<Redes> redes;
 	
-	@OneToMany(mappedBy = "alumno",cascade=CascadeType.ALL)
-	private List<Alumno_ciclo> alumno_ciclos;
+	@OneToMany(mappedBy = "alumno")
+	private List<Alumno_ciclo> alumno_ciclo;
 
 	@OneToMany(mappedBy = "alumno")
 	private List<Alumno_ot> alumno_ot;
 
-	@OneToMany(mappedBy = "alumno",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "alumno")
 	private List<Alumno_aptitud> alumno_aptitudes;
 	
 	public Usuario getUsuario() {
@@ -236,12 +238,12 @@ public class Alumno implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public List<Alumno_ciclo> getAlumno_ciclos() {
-		return alumno_ciclos;
+	public List<Alumno_ciclo> getalumno_ciclo() {
+		return alumno_ciclo;
 	}
 
-	public void setAlumno_ciclos(List<Alumno_ciclo> alumno_ciclos) {
-		this.alumno_ciclos = alumno_ciclos;
+	public void setalumno_ciclo(List<Alumno_ciclo> alumno_ciclo) {
+		this.alumno_ciclo = alumno_ciclo;
 	}
 
 	public List<Alumno_ot> getAlumno_ot() {
@@ -266,13 +268,16 @@ public class Alumno implements Serializable {
 			
 		}
 	}
-	public void addAlumno_ciclos(Alumno_ciclo alumno_ciclo) {
-		this.alumno_ciclos.add(alumno_ciclo);
+	public void addalumno_ciclo(Alumno_ciclo alumno_ciclo) {
+		this.alumno_ciclo.add(alumno_ciclo);
 		if (alumno_ciclo.getAlumno()!=null) {
 			alumno_ciclo.setAlumno(this);
 		}
 	}
 	public void addRedes(Redes redes){
 		this.redes.add(redes);
+		if (redes.getAlumno()!=null) {
+			redes.setAlumno(this);
+		}
 	}
 }

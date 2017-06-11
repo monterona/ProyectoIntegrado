@@ -28,12 +28,12 @@ public class Alumno_ciclo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "alumno_id")
     @JsonIgnore
 	private Alumno alumno;
 	
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ciclo_id")
 	private Ciclo ciclo;
 	
