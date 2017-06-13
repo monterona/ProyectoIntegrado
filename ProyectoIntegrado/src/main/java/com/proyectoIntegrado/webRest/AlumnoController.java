@@ -43,20 +43,13 @@ public class AlumnoController extends AbstractResourceController {
 	public Alumno alumno(@PathVariable("id") int id) {
 		return alumnoService.getAlumno(id);
 	}
-
-//	@RequestMapping(value = "/alumno/{siglas}", method = RequestMethod.POST)
-//	public void alumno(@RequestBody Alumno alumno, @PathVariable("siglas") String siglas) {
-//		Alumno a = alumnoService.save(alumno);
-//		Ciclo c = cicloService.getCiclo(siglas);
-//		alumno_cicloService.save(alumno.getalumno_ciclo().get(0).getAnnio_fin(),a.getId(), c.getId());
-//	}
 	
 	@RequestMapping(value = "/alumno", method = RequestMethod.POST)
 	public void alumno(@RequestBody Alumno alumno) {
 		Alumno a = alumnoService.save(alumno);
-		int alumno_id = a.getId();
-		redesService.save(alumno_id, alumno.getRedes());
-		alumno_cicloService.save(alumno_id, alumno.getalumno_ciclo());
+		//int alumno_id = a.getId();
+		redesService.save(a.getId(), alumno.getRedes());
+		alumno_cicloService.save(a.getId(), alumno.getalumno_ciclo());
 	}
 
 	@RequestMapping(value = "ciclo")

@@ -36,7 +36,6 @@ public class Usuario implements Serializable{
     private int rol_profesor;
 
     public Usuario() {
-		// TODO Auto-generated constructor stub
 	}
     
 	public Integer getId() {
