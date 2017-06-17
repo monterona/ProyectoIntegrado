@@ -35,15 +35,12 @@ public class Alumno implements Serializable {
 	private Integer id;
 
 	@Column(name = "nombre")
-
 	private String nombre;
 
 	@Column(name = "apellido1")
-
 	private String apellido1;
 
 	@Column(name = "apellido2")
-
 	private String apellido2;
 
 	@Column(name = "fecha_nac")
@@ -53,27 +50,21 @@ public class Alumno implements Serializable {
 	private Date fecha_nac;
 
 	@Column(name = "direccion")
-
 	private String direccion;
 
 	@Column(name = "localidad")
-
 	private String localidad;
 
 	@Column(name = "cp")
-
 	private int cp;
 
 	@Column(name = "provincia")
-
 	private String provincia;
 
 	@Column(name = "telefono")
-
 	private int telefono;
 
 	@Column(name = "email")
-
 	private String email;
 
 	@Column(name = "email2")
@@ -86,9 +77,9 @@ public class Alumno implements Serializable {
 	private String observaciones;
 
 	public Alumno() {
-		
+
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -201,14 +192,13 @@ public class Alumno implements Serializable {
 		this.observaciones = observaciones;
 	}
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario_id")
-	
 	private Usuario usuario;
 
 	@OneToMany(mappedBy = "alumno")
 	private List<Redes> redes;
-	
+
 	@OneToMany(mappedBy = "alumno")
 	private List<Alumno_ciclo> alumno_ciclo;
 
@@ -217,7 +207,7 @@ public class Alumno implements Serializable {
 
 	@OneToMany(mappedBy = "alumno")
 	private List<Alumno_aptitud> alumno_aptitudes;
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -261,22 +251,25 @@ public class Alumno implements Serializable {
 	public void setAlumno_aptitudes(List<Alumno_aptitud> alumno_aptitudes) {
 		this.alumno_aptitudes = alumno_aptitudes;
 	}
+
 	public void addAlumno_aptitudes(Alumno_aptitud alumno_aptitud) {
 		this.alumno_aptitudes.add(alumno_aptitud);
-		if (alumno_aptitud.getAlumno()!=this) {
+		if (alumno_aptitud.getAlumno() != this) {
 			alumno_aptitud.setAlumno(this);
-			
+
 		}
 	}
+
 	public void addalumno_ciclo(Alumno_ciclo alumno_ciclo) {
 		this.alumno_ciclo.add(alumno_ciclo);
-		if (alumno_ciclo.getAlumno()!=null) {
+		if (alumno_ciclo.getAlumno() != null) {
 			alumno_ciclo.setAlumno(this);
 		}
 	}
-	public void addRedes(Redes redes){
+
+	public void addRedes(Redes redes) {
 		this.redes.add(redes);
-		if (redes.getAlumno()!=null) {
+		if (redes.getAlumno() != null) {
 			redes.setAlumno(this);
 		}
 	}

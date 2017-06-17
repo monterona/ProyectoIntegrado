@@ -13,7 +13,7 @@ import com.proyectoIntegrado.service.Alumno_cicloService;
 public class Alumno_cicloServiceImpl implements Alumno_cicloService {
 
 	private Alumno_cicloRepository alumno_cicloRepository;
-	
+
 	@Autowired
 	public Alumno_cicloServiceImpl(Alumno_cicloRepository alumno_cicloRepository) {
 		this.alumno_cicloRepository = alumno_cicloRepository;
@@ -21,12 +21,10 @@ public class Alumno_cicloServiceImpl implements Alumno_cicloService {
 
 	@Override
 	public void save(int alumno_id, List<Alumno_ciclo> alumno_ciclos) {
-		for (Alumno_ciclo alumno_ciclo : alumno_ciclos){
+		for (Alumno_ciclo alumno_ciclo : alumno_ciclos) {
 			alumno_cicloRepository.save(alumno_ciclo.getAnnio_fin(), alumno_id, alumno_ciclo.getCiclo().getId());
 		}
-		
+
 	}
-	
-	
 
 }

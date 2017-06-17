@@ -3,7 +3,6 @@ package com.proyectoIntegrado.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +16,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="alumno_ot")
@@ -32,18 +31,19 @@ public class Alumno_ot implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "alumno_id")
+    @JsonIgnore
 	private Alumno alumno;
 	
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "alumno_ot")
+    @ManyToOne
+    @JoinColumn(name = "ot_id")
 	private Ot ot;
 	
 	@Column(name = "annio_fin")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	//@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date annio_fin;
 
 	public Integer getId() {

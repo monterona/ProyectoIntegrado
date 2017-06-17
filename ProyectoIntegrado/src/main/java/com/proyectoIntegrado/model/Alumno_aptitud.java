@@ -2,7 +2,6 @@ package com.proyectoIntegrado.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,12 +29,12 @@ public class Alumno_aptitud implements Serializable{
 	@Column(name = "nivel")
 	private String nivel;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "alumno_id")
     @JsonIgnore
 	private Alumno alumno;
     
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name="aptitud_id")
 	private Aptitud aptitud;
 	
@@ -53,9 +52,6 @@ public class Alumno_aptitud implements Serializable{
 
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
-		if (!alumno.getAlumno_aptitudes().contains(this)) {
-			alumno.getAlumno_aptitudes().add(this);
-		}
 	}
 
 	public String getNivel() {
@@ -72,9 +68,6 @@ public class Alumno_aptitud implements Serializable{
 
 	public void setAptitud(Aptitud aptitud) {
 		this.aptitud = aptitud;
-		if (!aptitud.getAlumno_aptitudes().contains(this)) {
-			aptitud.getAlumno_aptitudes().add(this);
-		}
 	}
 	
 }

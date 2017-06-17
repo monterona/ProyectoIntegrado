@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ot")
 public class Ot implements Serializable{
@@ -32,7 +34,11 @@ public class Ot implements Serializable{
 	@NotEmpty
 	private String siglas;
 
+	@Column(name = "nombre")
+	private String nombre;
+	
 	@OneToMany(mappedBy = "ot")
+	@JsonIgnore
 	private List<Alumno_ot> alumno_ot;
 
 	@ManyToOne
@@ -45,6 +51,14 @@ public class Ot implements Serializable{
 
 	public void setSiglas(String siglas) {
 		this.siglas = siglas;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Integer getId() {

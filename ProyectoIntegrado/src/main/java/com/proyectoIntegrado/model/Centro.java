@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="centro")
 public class Centro implements Serializable{
@@ -31,6 +33,7 @@ public class Centro implements Serializable{
 	private String nombre;
 
 	@OneToMany(mappedBy = "centro")
+	@JsonIgnore
 	private List<Ot> ots;
 
 	public Integer getId() {
