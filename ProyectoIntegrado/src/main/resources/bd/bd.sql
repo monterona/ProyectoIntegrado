@@ -1,4 +1,4 @@
---Script de la base de datos con algunos insert de prueba
+-- Script de la base de datos con algunos insert de prueba
 --
 CREATE DATABASE  IF NOT EXISTS `ProyectoIntegradoBd` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `ProyectoIntegradoBd`;
