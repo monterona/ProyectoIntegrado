@@ -34,4 +34,9 @@ public class AlumnoServiceImple implements AlumnoService {
 		return alumnoRepository.findAll();
 	}
 
+	@Override
+	public Alumno getAlumnoUsuario(int id) {
+		return alumnoRepository.findFirstByUsuario_id(id);
+	}
+
 }

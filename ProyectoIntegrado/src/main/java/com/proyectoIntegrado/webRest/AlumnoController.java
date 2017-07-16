@@ -69,7 +69,12 @@ public class AlumnoController extends AbstractResourceController {
 		alumno_aptitudService.save(alumno_id, alumno.getAlumno_aptitudes());
 		alumno_otService.save(alumno_id, alumno.getAlumno_ot());
 	}
-
+	
+	@RequestMapping(value = "alumnoUsuario/{id}", method = RequestMethod.GET)
+	public Alumno getalumnoUsuario(@PathVariable("id") int id) {
+		return alumnoService.getAlumnoUsuario(id);
+	}
+	
 	@RequestMapping(value = "ciclos", method = RequestMethod.GET)
 	public List<Ciclo> getCiclos() {
 		return cicloService.getCiclos();

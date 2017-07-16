@@ -8,4 +8,5 @@ public interface AlumnoService {
 	Alumno save(Alumno a);
 	Alumno getAlumno(int i);
 	List<Alumno> getAlumnos();
+	Alumno getAlumnoUsuario(int id);
 }
