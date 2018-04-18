@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="page-header text-center">
+        <span class="lead" style="font-size:3em;">{{vm.alumno.nombre| capitalize}} {{vm.alumno.apellido1| capitalize}} {{vm.alumno.apellido2| capitalize}}</span>
+    </div>
+    <br><br>
+	<div class="row" style="font-size:1.1em;">
+		<div class="col-xs-4">
+            <i class="glyphicon glyphicon-user">&nbsp;</i><label>Usuario</label><br>
+		    {{vm.alumno.usuario.usuario}}
+		</div>
+		<div class="col-xs-3">
+            <i class="glyphicon glyphicon-phone-alt">&nbsp;</i><label>Teléfono</label><br>
+		    {{vm.alumno.telefono}}
+		</div>
+		<div class="col-xs-3">
+            <i class="glyphicon glyphicon-calendar">&nbsp;</i><label>Nacimiento</label><br>
+		    {{vm.alumno.fecha_nac}}
+		</div>
+		<div class="col-xs-2">
+            <i ng-class="vm.alumno.disponibilidad == 0 ? 'text-danger glyphicon glyphicon-remove' : 'text-success glyphicon glyphicon-ok'">&nbsp;</i><label>Disponibilidad</label><br>
+		    <span ng-if="vm.alumno.disponibilidad == 0">No</span>
+		    <span ng-if="vm.alumno.disponibilidad == 1">Si</span>
+		</div>
+	</div>
+	<br><br>
+	<div class="row" style="font-size:1.1em;">
+	    <div class="col-xs-4">
+            <i class="glyphicon glyphicon-home">&nbsp;</i><label>Direccion</label><br>
+		    {{vm.alumno.direccion}}
+		</div>
+		<div class="col-xs-3">
+            <i class="glyphicon glyphicon-globe">&nbsp;</i><label>Provincia</label><br>
+		    {{vm.alumno.provincia| capitalize}}
+		</div>
+		<div class="col-xs-3">
+            <i class="glyphicon glyphicon-globe">&nbsp;</i><label>Localidad</label><br>
+		    {{vm.alumno.localidad| capitalize}}
+		</div>
+		<div class="col-xs-2">
+            <i class="glyphicon glyphicon-paperclip">&nbsp;</i><label>Código Postal</label><br>
+		    {{vm.alumno.cp}}
+		</div>
+	</div>
+	<br><br>
+	<div class="row" style="font-size:1.1em;">
+		<div class="col-xs-6">
+            <i class="glyphicon glyphicon-envelope">&nbsp;</i><label>Email</label><br>
+		    {{vm.alumno.email}}
+		</div>
+		<div class="col-xs-6" ng-if="vm.alumno.email2">
+            <i class="glyphicon glyphicon-envelope">&nbsp;</i><label>Segundo Email</label><br>
+		    {{vm.alumno.email2}}
+		</div>
+	</div>
+	<br><br>
+	<div class="row" style="font-size:1.1em;">
+		<div class="col-xs-6">
+           <div ng-if="vm.alumno.redes">
+                <i class="glyphicon glyphicon-share">&nbsp;</i><label>Redes Sociales</label><br>
+		        <table>
+		            <tr ng-repeat="red in vm.alumno.redes"><td><a href="{{red.link}}" target="_blank">{{red.link}}</a></td></tr>
+		        </table>
+		    </div>
+        </div>
+		<div class="col-xs-6">
+           <div ng-if="vm.alumno.observaciones">
+                <i class="glyphicon glyphicon-eye-open">&nbsp;</i><label>Observaciones</label><br>
+		        <p class="break-word">{{vm.alumno.observaciones}}</p>    
+		    </div>
+        </div>
+    </div>
+    <br><br>
+	<div class="row" style="font-size:1.1em;">
+		<div class="col-xs-6">
+            <i class="glyphicon glyphicon-education">&nbsp;</i><label>Ciclo</label><br>
+		    <span ng-repeat="ac in vm.alumno.alumno_ciclo">
+		        <span>{{ac.ciclo.siglas}}&emsp;&emsp;&emsp;</span><span>{{ac.ciclo.nombre}}&emsp;&emsp;&emsp;</span><span>{{ac.annio_fin| date:'yyyy'}}</span>
+		    </span>
+		</div>
+		<div class="col-xs-6" ng-if="vm.alumno.alumno_ot.length > 0">
+            <i class="glyphicon glyphicon-education">&nbsp;</i><label>Otras Titulaciones</label><br>
+            <span ng-repeat="aOt in vm.alumno.alumno_ot" style="width='0px'">
+                <span ng-repeat="ot in aOt track by $index">{{ot.siglas}}&emsp;&emsp;{{ot.nombre}}<span ng-if="$last">{{aOt.annio_fin | date:'yyyy'}}</span> 
+                    <span ng-repeat="centro in ot track by $index"><span ng-if="$last"><br>&emsp;&emsp;{{centro.nombre}}</span></span>
+                </span>
+            </span>
+		</div>
+	</div>
+	<br><br>
+	<div class="row" style="font-size:1.1em;">
+		<div class="col-xs-12" ng-if="vm.alumno.alumno_aptitudes.length > 0">
+            <i class="glyphicon glyphicon-pushpin">&nbsp;</i><label>Aptitudes</label><br>
+            <table>
+		    <tr ng-repeat="ap in vm.alumno.alumno_aptitudes">
+                <td>{{ap.aptitud.nombre | capitalize}}&emsp;&emsp;&emsp;</td><td ng-class="{'text-danger' : ap.nivel == 'bajo','text-success' : ap.nivel == 'alto','text-warning' : ap.nivel == 'medio'}">{{ap.nivel | capitalize}}</td>
+            </tr>
+            </table>
+		</div>
+	</div>
+</div>
+<br><br><br><br><br>

@@ -1,0 +1,75 @@
+<!--<div class="container">
+    <h1 class="page-header">Acceso a IES Poligono Sur</h1>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-5" ng-if="!vm.isLogged()">      
+          <form>
+              <div class="form-group">
+                <label for="inputUsuario">Nombre Usuario</label>
+                <input type="text" class="form-control" id="inputUsuario" placeholder="Escribe tu Usuario" ng-model="vm.usuario.usuario">
+              </div>
+              <div class="form-group">
+                <label for="inputContrasena">Contraseña</label>
+                <input type="password" class="form-control" id="inputContrasena" placeholder="Password" ng-model="vm.usuario.contrasena">
+              </div>
+              <p class="alert alert-danger" ng-if="vm.error">{{vm.msgerror}}</p>
+              <button type="submit" class="btn btn-info" ng-click="vm.login()">Acceder</button>
+              <button type="button" class="btn btn-info" ng-click="vm.registro()">Registrarse</button>
+          </form>
+        </div>
+        <div class="col-sm-6" ng-if="vm.isLogged()">   
+            <p class="alert alert-info">Ya se encuentra logado en nuestra aplicación</p>
+        </div>
+    </div>
+</div>-->
+<div class="container">
+<div class="row" style="margin-top:8%">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3" ng-if="!vm.isLogged()">
+		<form role="form">
+			<fieldset>
+				<h2>Acceso a IES Polígono Sur</h2>
+				<hr class="colorgraph">
+				<div class="form-group">
+                    <input type="text" class="form-control input-lg" id="inputUsuario" placeholder="Nombre de Usuario" ng-model="vm.usuario.usuario" autocomplete="vm.recordar">
+				</div>
+				<div class="form-group">
+                    <input type="password" class="form-control input-lg" id="inputContrasena" placeholder="Contraseña" ng-model="vm.usuario.contrasena">
+				</div>
+				<p class="alert alert-danger" ng-if="vm.error">{{vm.msgerror}}</p>
+				<!--<span class="button-checkbox">
+					<button type="button" class="btn btn-info">Recordarme</button>
+                    <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+					<a href="" class="btn btn-link pull-right">¿Olvidaste la Contraseña?</a>
+				</span>-->
+				<div class="form-group">
+                    <input type="checkbox" name="recordar" id="recordar" autocomplete="off" ng-model="vm.recordar" />
+                    <div class="btn-group">
+                        <label for="recordar" class="btn btn-info">Recordarme
+                            <span ng-class="vm.recordar ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-ok'"></span>
+                            <span> </span>
+                        </label>
+                    </div>
+                    <a href="" class="btn btn-link pull-right">¿Olvidaste la Contraseña?</a>
+                </div>
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+                        <button type="submit" class="btn btn-lg btn-success btn-block" ng-click="vm.login()">Acceder</button>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+					    <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="vm.registro()">Registrarse</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2" ng-if="vm.isLogged()">   
+        <p class="alert alert-danger alto">Ya se encuentra logueado en la aplicación
+        <br><br>
+            <button type="button" class="btn btn-danger btn-md" ng-click="vm.logout()">
+              <span class="glyphicon glyphicon-log-out"></span> Salir
+            </button>
+        </p>
+    </div>
+</div>
+</div>

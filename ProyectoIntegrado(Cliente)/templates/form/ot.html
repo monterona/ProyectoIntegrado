@@ -1,0 +1,50 @@
+<div class="tab-pane fade in active" data-ng-init="vm.init()">
+    <div class="form-horizontal">
+        <form name="userForm">
+        <h4 class="head text-center">{{vm.title}}</h4>
+        <br/>
+        <div class='row'>
+            <div class='col-xs-offset-1 col-xs-3 col-md-offset-2 col-md-2'>
+                <div class="form-group">
+                  <label class="control-label" for="siglasOt">Siglas</label>
+                   <input type"text" ng-model="vm.alumno_ot.ot.siglas" class="form-control" name="siglasOt">
+                </div>
+            </div>
+            <div class='col-xs-offset-1 col-xs-6 col-md-offset-1 col-md-5 col-md-offset-2'>
+                <label class="control-label" for="nombreCompleto">Nombre Completo</label>  
+                <input type="text" class="form-control" ng-model="vm.alumno_ot.ot.nombre" name="nombreCompleto">
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-xs-offset-1 col-xs-5 col-md-offset-2 col-md-4'>
+                <div class="form-group">
+                  <label class="control-label" for="centro">Centro</label>
+                   <ui-select ng-model="vm.alumno_ot.ot.centro" name="centro" required>
+                        <ui-select-match>
+                            <span ng-bind="$select.selected.nombre"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in (vm.centrosArray | filter: $select.search) track by item.id">
+                            <span ng-bind="item.nombre"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class='col-xs-offset-1 col-xs-4 col-md-offset-1 col-md-3 col-md-offset-2'>
+                <label class="control-label" for="fecha_fin">Fecha finalización</label>  
+                <p class="input-group">
+                  <input type="text" name="fecha_fin" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.alumno_ot.annio_fin" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>
+            </div>
+        </div>
+        <br><br>
+        </form>
+        
+        <div class="form-group text-center">
+            <button ui-sref="form.ciclo" class="btn btn-outline-rounded btn-default"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Anterior</button>
+            <button ui-sref="form.redes" class="btn btn-outline-rounded btn-info" ng-click="vm.addOt()"> Siguiente <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
+    </div>
+</div>

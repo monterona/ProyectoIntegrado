@@ -1,0 +1,78 @@
+<div class="tab-pane fade in active" data-ng-init="vm.init()">
+    <div class="form-group">
+       <form name="userForm">
+        <h4 class="head text-center">{{vm.title}}</h4>
+        <br/>
+        <div class='row'>
+            <div class='col-xs-6 col-md-offset-2 col-md-4'>
+                <div class="form-group">
+                  <label class="control-label" for="ciclo">Ciclo cursado</label>
+                   <ui-select ng-model="vm.ciclo.ciclo" name="ciclo" required>
+                        <ui-select-match>
+                            <span ng-bind="$select.selected.siglas"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in (vm.ciclosArray | filter: $select.search) track by item.id">
+                            <span ng-bind="item.siglas"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <span class="help-block error" ng-if="userForm.ciclo.$touched && userForm.ciclo.$error.required">El campo es obligatorio</span>
+                </div>
+            </div>
+            <div class='col-xs-6 col-md-offset-1 col-md-3 col-md-offset-2'>
+                <label class="control-label" for="fecha_nac">Fecha finalización Ciclo</label>  
+                <p class="input-group">
+                  <input type="text" name="fecha_nac" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.ciclo.annio_fin" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class='col-xs-6 col-md-offset-2 col-md-4'>
+                <label class="control-label" for="aptitudes">Aptitudes</label>
+                <p class="input-group">
+                    <ui-select ng-model="vm.aptitudAux.aptitud" name="aptitudes">
+                        <ui-select-match>
+                            <span ng-bind="$select.selected.nombre"></span>
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in (vm.aptitudArray | filter: $select.search) track by item.id" refresh="vm.p($select)" refresh-delay="0">
+                            <span ng-bind="item.nombre"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-warning" ng-click="vm.addAptitud()"><i class="glyphicon glyphicon-plus"></i></button>
+                    </span>
+                </p>
+                <!--<span class="help-block error" ng-if="userForm.aptitudes.$touched && userForm.aptitudes.$error.required">El campo es obligatorio</span>-->                
+            </div>
+            <div class='col-xs-6 col-md-offset-1 col-md-3' ng-if="vm.aptitudAux.aptitud">
+                <label class="control-label" for="nivel">Nivel</label>
+                <ui-select ng-model="vm.aptitudAux.nivel" name="nivel" ng-disabled="!vm.aptitudAux.aptitud">
+                    <ui-select-match>
+                        <span ng-bind="$select.selected"></span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in (vm.nivelArray | filter: $select.search)">
+                        <span ng-bind="item"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <br>
+        <div class="row" ng-if="vm.formData.alumno_aptitudes.length > 0">
+            <div class='col-xs-offset-2 col-xs-9 col-md-offset-3 col-md-6 text-center'>
+                <div class="panel panel-info"  ng-repeat="aptitud in vm.formData.alumno_aptitudes">
+                        <div class="panel-body">
+                            <span><b>Aptitud: </b>{{aptitud.aptitud.nombre}}<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nivel: </b> {{aptitud.nivel}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="vm.eliminarAptitud(aptitud)" class="glyphicon glyphicon-remove text-danger text-rigth"></span>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <div class="form-group text-center space-20">
+            <button ui-sref="form.direccion" class="btn btn-outline-rounded btn-default"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Anterior</button>
+            <button ui-sref="form.ot" class="btn btn-outline-rounded btn-info" ng-disabled="userForm.$invalid"> Siguiente <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
+    </div>
+</div>
